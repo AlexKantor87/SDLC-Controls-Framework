@@ -1,6 +1,6 @@
 ---
 sequence: 19
-title: Release Approval Gating
+title: Version Release Approval Gating
 layout: mitigation
 doc-status: Draft
 type: PREV
@@ -58,7 +58,7 @@ ffiec-itbooklets_references:
       oversight, defined roles and responsibilities, and accountability for
       approving what is delivered into production. Named approver roles with
       recorded, attributable decisions implement this expectation at the
-      release level.
+      version level.
   - id: dam-7
     note: >
       Maintenance covers change management over operational systems,
@@ -77,11 +77,11 @@ related_mitigations:
 
 ## Summary
 
-Release Approval Gating ensures that no versioned release — a software artifact, an infrastructure-as-code change set, or both — is promoted to production without satisfying a defined approval process, enforced by designated human approvers, automated policy checks, or a combination of both. It establishes a verifiable, auditable gate at the release level — distinct from per-deployment gates — that confirms the release candidate has satisfied all governance, quality, and risk requirements before any deployment is permitted.
+Version Release Approval Gating ensures that no version — of a software artifact, an infrastructure-as-code change set, or both — is released to production without satisfying a defined approval process, enforced by designated human approvers, automated policy checks, or a combination of both. It establishes a verifiable, auditable gate at the version level — distinct from per-deployment gates — that confirms the release candidate has satisfied all governance, quality, and risk requirements before any deployment is permitted.
 
 ## Description
 
-Deployment gating ([mi-12]({% link _mitigations/mi-12_deployment-gating.md %})) controls whether an individual deployment job may proceed based on technical policy checks. Release Approval Gating operates at a higher level: it governs whether a named release has received the organisational approval required to be released at all. A version may pass all automated deployment gates but still require explicit sign-off from a release manager, risk officer, or compliance stakeholder before it can be promoted from a candidate to an approved release.
+Deployment gating ([mi-12]({% link _mitigations/mi-12_deployment-gating.md %})) controls whether an individual deployment job may proceed based on technical policy checks. Version Release Approval Gating operates at a higher level: it governs whether a named version has received the organisational approval required to be released at all. A version may pass all automated deployment gates but still require explicit sign-off from a release manager, risk officer, or compliance stakeholder before it can be promoted from a candidate to an approved release.
 
 This distinction is critical in regulated financial services environments where change management frameworks require named human accountability for production releases, not merely automated technical policy satisfaction.
 
@@ -91,17 +91,17 @@ Two complementary approval mechanisms may be used individually or in combination
 Named approvers — such as a release manager, change advisory board (CAB) member, or risk officer — explicitly authorise a release candidate before it can proceed to any production deployment. The approval is recorded against the specific version, is timestamped and attributed to an identified individual, and must be obtained before any deployment of that version is permitted. Approval workflows may be tiered, requiring different sets of approvers depending on the risk classification of the application or the scope of the change.
 
 **Automated Policy Checks**
-Policy-as-code evaluations confirm that the evidence and decisions required for release exist before the version is marked approved: deployment gate criteria satisfied ([mi-12]({% link _mitigations/mi-12_deployment-gating.md %})), mandatory review steps complete ([mi-1]({% link _mitigations/mi-1_code-review.md %})), release-scope requirements agreed ([mi-20]({% link _mitigations/mi-20_requirements-approval.md %})), and the release artefact matched to verified build provenance ([mi-3]({% link _mitigations/mi-3_software-artifact-provenance.md %})). Evaluating the technical posture of the artefact itself — scan findings, test results, remediation timelines — is the domain of deployment gating; the distinguishing output of an automated release approval is a durable, attributable approval record that can be used as audit evidence independently of human action.
+Policy-as-code evaluations confirm that the evidence and decisions required for release exist before the version is marked approved: deployment gate criteria satisfied ([mi-12]({% link _mitigations/mi-12_deployment-gating.md %})), mandatory review steps complete ([mi-1]({% link _mitigations/mi-1_code-review.md %})), release-scope requirements agreed ([mi-20]({% link _mitigations/mi-20_requirements-approval.md %})), and the release artefact matched to verified build provenance ([mi-3]({% link _mitigations/mi-3_software-artifact-provenance.md %})). Evaluating the technical posture of the artefact itself — scan findings, test results, remediation timelines — is the domain of deployment gating; the distinguishing output of an automated approval is a durable, attributable approval record that can be used as audit evidence independently of human action.
 
-In either case, the approval state is recorded at the release level in a system of record, and production deployment is technically prevented until the required approval state is confirmed. The approval state is typically one of the conditions a deployment gate ([mi-12]({% link _mitigations/mi-12_deployment-gating.md %})) verifies at each deployment event.
+In either case, the approval state is recorded at the version level in a system of record, and production deployment is technically prevented until the required approval state is confirmed. The approval state is typically one of the conditions a deployment gate ([mi-12]({% link _mitigations/mi-12_deployment-gating.md %})) verifies at each deployment event.
 
 ## Requirements
 
-* Every versioned release intended for production MUST be subject to a defined approval process before any production deployment is initiated
+* Every version intended for release to production MUST be subject to a defined approval process before any production deployment is initiated
 * Production deployment of a version MUST be technically prevented while the required approval for that version is absent or has been revoked
 * The approval process MUST specify which approver roles or automated checks are required, differentiated by application risk classification where appropriate
 * Manual approvals MUST be attributed to a named individual, timestamped, and recorded in an auditable system of record
-* Automated approval checks MUST produce a structured, machine-readable result that is retained as part of the release record
+* Automated approval checks MUST produce a structured, machine-readable result that is retained as part of the approval record for that version
 * Approval state MUST be bound to an immutable, content-addressable identity for the released version; approval of one version MUST NOT be transferable to another
 * Approval records MUST be retained for a period consistent with applicable regulatory requirements and the organisation's record-keeping policy
 * The set of required approval checks and approver roles MUST be reviewed at least annually, or following any material change in the application's risk profile, regulatory obligations, or technology stack
