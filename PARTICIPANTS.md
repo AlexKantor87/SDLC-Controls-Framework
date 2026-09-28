@@ -5,6 +5,7 @@ Below is the list of [participants](GOVERNANCE.md#1-roles) in the SDLC Common Co
 ## Participants
 - Name, organization, Date of enrollment: MMM/DD/YYYY
 - Alex Kantor, Kosli, Sep/28/2026
+- Marko Bevc, Kosli, Sep/28/2026
 - Paul Cavanagh, Adaptavist, Sep/28/2026
 -  
 - 
