@@ -1,9 +1,9 @@
 ---
 sequence: 23
-version: "0.1"
+version: "0.2"
 title: Agentic Processes Provenance
 layout: mitigation
-doc-status: Draft
+doc-status: First-Reading-Approved
 type: PREV
 phase: LIFECYCLE
 eu-ai-act_references:
